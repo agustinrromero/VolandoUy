@@ -22,7 +22,7 @@ public class Flight {
 
     private Map<Integer, Reservation> reservationsById;
 
-    public Flight(Builder builder) {
+    private Flight(Builder builder) {
         this.name = builder.name;
         this.maxAmountTouristSeats = builder.maxAmountTouristSeats;
         this.maxAmountBusinessSeats = builder.maxAmountBusinessSeats;

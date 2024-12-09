@@ -13,7 +13,7 @@ public class City {
     private Country country;
     private LocalDate registrationDate;
 
-    public City(Builder builder) {
+    private City(Builder builder) {
         this.name = builder.name;
         this.description = builder.description;
         this.airport = builder.airport;

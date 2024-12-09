@@ -13,7 +13,7 @@ public class Client extends User {
     private String idNumber;
     private Country country;
 
-    public Client(ClientBuilder builder) {
+    private Client(ClientBuilder builder) {
         super(builder);
         this.lastName = builder.lastName;
         this.birthday = builder.birthday;

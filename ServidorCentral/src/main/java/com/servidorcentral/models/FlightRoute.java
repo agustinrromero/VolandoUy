@@ -30,7 +30,7 @@ public class FlightRoute {
 
     private int visits;
 
-    public FlightRoute(Builder builder) {
+    private FlightRoute(Builder builder) {
         this.name = builder.name;
         this.description = builder.description;
         this.shortDescription = builder.shortDescription;

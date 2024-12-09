@@ -24,7 +24,7 @@ public class Reservation {
 
     private BigDecimal totalCost;
 
-    public Reservation(Builder builder) {
+    private Reservation(Builder builder) {
         this.id = idCounter++;
         this.registrationDate = builder.registrationDate;
         this.flight = builder.flight;
