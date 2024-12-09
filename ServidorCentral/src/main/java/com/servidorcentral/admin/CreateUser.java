@@ -4,6 +4,8 @@ import com.servidorcentral.controllers.UserController;
 import com.servidorcentral.enums.Country;
 import com.servidorcentral.enums.IdType;
 import com.servidorcentral.exceptions.UserAlreadyExistsException;
+import com.servidorcentral.models.Airline;
+import com.servidorcentral.models.Client;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -466,31 +468,43 @@ public class CreateUser extends JInternalFrame {
         }
 
         try {
+			LocalDate registrationDate = LocalDate.of(
+					Integer.parseInt(this.txtRegistrationYear.getText()),
+					Integer.parseInt(this.txtRegistrationMonth.getText()),
+					Integer.parseInt(this.txtRegistrationDay.getText())
+			);
+
             if (Objects.equals(this.cmbUserType.getSelectedItem(), "Cliente")) {
-                this.userController.createClient(
-                    this.txtUsername.getText(),
-                    this.txtName.getText(),
-                    this.txtEmail.getText(),
-                    new String(this.txtPassword.getPassword()),
-                    this.image,
-                    LocalDate.of(Integer.parseInt(this.txtRegistrationYear.getText()), Integer.parseInt(this.txtRegistrationMonth.getText()), Integer.parseInt(this.txtRegistrationDay.getText())),
-                    this.txtLastName.getText(),
-                    LocalDate.of(Integer.parseInt(this.txtBirthdayYear.getText()), Integer.parseInt(this.txtBirthdayMonth.getText()), Integer.parseInt(this.txtBirthdayDay.getText())),
-                    IdType.fromString((String) this.cmbIdType.getSelectedItem()),
-                    this.txtIdNumber.getText(),
-                    Country.fromString((String) this.cmbCountry.getSelectedItem())
-                );
+				LocalDate birthday = LocalDate.of(
+						Integer.parseInt(this.txtBirthdayYear.getText()),
+						Integer.parseInt(this.txtBirthdayMonth.getText()),
+						Integer.parseInt(this.txtBirthdayDay.getText())
+				);
+
+				Client client = new Client.ClientBuilder(this.txtUsername.getText(), this.txtEmail.getText())
+						.setName(this.txtName.getText())
+						.setPassword(new String(this.txtPassword.getPassword()))
+						.setImage(this.image)
+						.setRegistrationDate(registrationDate)
+						.setLastName(this.txtLastName.getText())
+						.setBirthday(birthday)
+						.setIdType(IdType.fromString((String) this.cmbIdType.getSelectedItem()))
+						.setIdNumber(this.txtIdNumber.getText())
+						.setCountry(Country.fromString((String) this.cmbCountry.getSelectedItem()))
+						.build();
+
+				this.userController.createClient(client);
             } else if (Objects.equals(this.cmbUserType.getSelectedItem(), "Aerolínea")) {
-                this.userController.createAirline(
-                    this.txtUsername.getText(),
-                    this.txtName.getText(),
-                    this.txtEmail.getText(),
-                    new String(this.txtPassword.getPassword()),
-                    this.image,
-                    LocalDate.of(Integer.parseInt(this.txtRegistrationYear.getText()), Integer.parseInt(this.txtRegistrationMonth.getText()), Integer.parseInt(this.txtRegistrationDay.getText())),
-                    this.txaDescription.getText(),
-                    this.txtWebUrl.getText()
-                );
+				Airline airline = new Airline.AirlineBuilder(this.txtUsername.getText(), this.txtEmail.getText())
+						.setName(this.txtName.getText())
+						.setPassword(new String(this.txtPassword.getPassword()))
+						.setImage(this.image)
+						.setRegistrationDate(registrationDate)
+						.setDescription(this.txaDescription.getText())
+						.setWebUrl(this.txtWebUrl.getText())
+						.build();
+
+				this.userController.createAirline(airline);
             }
 
             JOptionPane.showMessageDialog(this, "Usuario creado exitosamente", "Crear usuario", JOptionPane.INFORMATION_MESSAGE);

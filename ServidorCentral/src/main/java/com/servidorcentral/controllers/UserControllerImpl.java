@@ -13,61 +13,15 @@ import java.time.LocalDate;
 public class UserControllerImpl implements UserController {
 
     @Override
-    public void createClient(
-        String username,
-        String name,
-        String email,
-        String password,
-        byte[] image,
-        LocalDate registrationDate,
-        String lastName,
-        LocalDate birthday,
-        IdType idType,
-        String idNumber,
-        Country country
-    ) throws UserAlreadyExistsException {
-        User newUser = new Client(
-            username,
-            name,
-            email,
-            password,
-            image,
-            registrationDate,
-            lastName,
-            birthday,
-            idType,
-            idNumber,
-            country
-        );
-
+    public void createClient(Client client) throws UserAlreadyExistsException {
         UserRepository userRepository = UserRepository.getInstance();
-        userRepository.addUser(newUser);
+        userRepository.addUser(client);
     }
 
     @Override
-    public void createAirline(
-        String username,
-        String name,
-        String email,
-        String password,
-        byte[] image,
-        LocalDate registrationDate,
-        String description,
-        String webUrl
-    ) throws UserAlreadyExistsException {
-        User newUser = new Airline(
-            username,
-            name,
-            email,
-            password,
-            image,
-            registrationDate,
-            description,
-            webUrl
-        );
-
+    public void createAirline(Airline airline) throws UserAlreadyExistsException {
         UserRepository userRepository = UserRepository.getInstance();
-        userRepository.addUser(newUser);
+        userRepository.addUser(airline);
     }
 
 }
