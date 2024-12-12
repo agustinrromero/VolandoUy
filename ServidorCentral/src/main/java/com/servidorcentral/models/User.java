@@ -1,5 +1,7 @@
 package com.servidorcentral.models;
 
+import com.servidorcentral.dtos.UserDTO;
+
 import java.time.LocalDate;
 
 public class User {
@@ -22,12 +24,34 @@ public class User {
         this.registrationDate = builder.registrationDate;
     }
 
+    // Getters
     public String getUsername() {
         return this.username;
     }
 
     public String getEmail() {
         return this.email;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public String getPassword() {
+        return this.password;
+    }
+
+    public byte[] getImage() {
+        return this.image;
+    }
+
+    public LocalDate getRegistrationDate() {
+        return this.registrationDate;
+    }
+
+    // Other methods
+    public UserDTO getDTO() {
+        return new UserDTO(this);
     }
 
     // Builder

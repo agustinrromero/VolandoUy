@@ -24,6 +24,15 @@ public class UserDTO {
         this.registrationDate = builder.registrationDate;
     }
 
+    public UserDTO(User user) {
+        this.username = user.getUsername();
+        this.email = user.getEmail();
+        this.name = user.getName();
+        this.password = user.getPassword();
+        this.image = user.getImage();
+        this.registrationDate = user.getRegistrationDate();
+    }
+
     // Builder
     public static abstract class UserDTOBuilder<T extends UserDTOBuilder<?>> {
         private final String username;
