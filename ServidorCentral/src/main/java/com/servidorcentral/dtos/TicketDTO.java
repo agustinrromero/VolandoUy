@@ -1,4 +1,12 @@
 package com.servidorcentral.dtos;
 
-public record TicketDTO(String firstName, String lastName, int seatNumber) {}
+import com.servidorcentral.models.Ticket;
+
+public record TicketDTO(String firstName, String lastName, int seatNumber) {
+
+    public TicketDTO(Ticket ticket) {
+        this(ticket.getFirstName(), ticket.getLastName(), ticket.getSeatNumber());
+    }
+
+}
 
