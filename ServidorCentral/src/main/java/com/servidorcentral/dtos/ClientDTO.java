@@ -22,6 +22,26 @@ public class ClientDTO extends UserDTO {
         this.country = builder.country;
     }
 
+	public String getLastName() {
+		return this.lastName;
+	}
+
+	public LocalDate getBirthday() {
+		return this.birthday;
+	}
+
+	public IdType getIdType() {
+		return this.idType;
+	}
+
+	public String getIdNumber() {
+		return this.idNumber;
+	}
+
+	public Country getCountry() {
+		return this.country;
+	}
+
     // Builder
     public static class ClientDTOBuilder extends UserDTOBuilder<ClientDTOBuilder> {
         private String lastName;

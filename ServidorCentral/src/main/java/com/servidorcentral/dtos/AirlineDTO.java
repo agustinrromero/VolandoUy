@@ -15,6 +15,18 @@ public class AirlineDTO extends UserDTO {
         this.flightRoutes = builder.flightRoutes;
     }
 
+	public String getDescription() {
+		return this.description;
+	}
+
+	public String getWebUrl() {
+		return this.webUrl;
+	}
+
+	public Set<FlightRouteDTO> getFlightRoutes() {
+		return this.flightRoutes;
+	}
+
     // Builder
     public static class AirlineDTOBuilder extends UserDTOBuilder<AirlineDTOBuilder> {
         private String description;

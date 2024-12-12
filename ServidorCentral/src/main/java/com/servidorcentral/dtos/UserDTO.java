@@ -33,6 +33,30 @@ public class UserDTO {
         this.registrationDate = user.getRegistrationDate();
     }
 
+	public String getUsername() {
+		return this.username;
+	}
+
+	public String getEmail() {
+		return this.email;
+	}
+
+	public String getName() {
+		return this.name;
+	}
+
+	public String getPassword() {
+		return this.password;
+	}
+
+	public byte[] getImage() {
+		return this.image;
+	}
+
+	public LocalDate getRegistrationDate() {
+		return this.registrationDate;
+	}
+
     // Builder
     public static abstract class UserDTOBuilder<T extends UserDTOBuilder<?>> {
         private final String username;
