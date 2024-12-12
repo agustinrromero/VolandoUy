@@ -1,10 +1,13 @@
 package com.servidorcentral.repositories;
 
+import com.servidorcentral.dtos.UserDTO;
 import com.servidorcentral.exceptions.UserAlreadyExistsException;
 import com.servidorcentral.models.User;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 public class UserRepository {
 
@@ -39,6 +42,16 @@ public class UserRepository {
 
     public User getUserByEmail(String email) {
         return emailUser.get(email);
+    }
+
+    public Set<UserDTO> getAllUsersDTO() {
+        Set<UserDTO> usersDTO = new HashSet<>();
+
+        for (User user: this.usernameUser.values()) {
+            usersDTO.add(user.getDTO());
+        }
+
+        return usersDTO;
     }
 
 }
