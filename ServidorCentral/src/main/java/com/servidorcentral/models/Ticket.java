@@ -1,5 +1,7 @@
 package com.servidorcentral.models;
 
+import com.servidorcentral.dtos.TicketDTO;
+
 public class Ticket {
 
     private String firstName;
@@ -16,6 +18,10 @@ public class Ticket {
 
     public int getSeatNumber() {
         return seatNumber;
+    }
+
+    public TicketDTO getDTO() {
+        return new TicketDTO(this);
     }
 
 }
