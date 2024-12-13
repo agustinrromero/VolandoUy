@@ -1,9 +1,12 @@
 package com.servidorcentral.models;
 
+import com.servidorcentral.dtos.ReservationDTO;
 import com.servidorcentral.enums.Country;
 import com.servidorcentral.enums.IdType;
 
 import java.time.LocalDate;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Client extends User {
 
@@ -13,6 +16,8 @@ public class Client extends User {
     private String idNumber;
     private Country country;
 
+    private Set<Reservation> reservations;
+
     private Client(ClientBuilder builder) {
         super(builder);
         this.lastName = builder.lastName;
@@ -20,6 +25,13 @@ public class Client extends User {
         this.idType = builder.idType;
         this.idNumber = builder.idNumber;
         this.country = builder.country;
+        this.reservations = builder.reservations;
+    }
+
+    public Set<ReservationDTO> getReservationsDTO() {
+        return this.reservations.stream()
+                .map(Reservation::getDTO)
+                .collect(Collectors.toSet());
     }
 
     // Builder
@@ -29,6 +41,8 @@ public class Client extends User {
         private IdType idType;
         private String idNumber;
         private Country country;
+
+        private Set<Reservation> reservations;
 
         public ClientBuilder(String username, String email) {
             super(username, email);
@@ -56,6 +70,11 @@ public class Client extends User {
 
         public ClientBuilder setCountry(Country country) {
             this.country = country;
+            return this;
+        }
+
+        public ClientBuilder setReservations(Set<Reservation> reservations) {
+            this.reservations = reservations;
             return this;
         }
 

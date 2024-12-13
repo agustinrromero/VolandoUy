@@ -7,6 +7,7 @@ import com.servidorcentral.models.User;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 public class UserRepository {
@@ -42,6 +43,14 @@ public class UserRepository {
 
     public Optional<User> getUserByEmail(String email) {
         return Optional.ofNullable(emailUser.get(email));
+    }
+
+    public Optional<User> getUser(String usernameOrEmail) {
+        Optional<User> user = getUserByUsername(usernameOrEmail);
+        if (user.isEmpty()) {
+            user = getUserByEmail(usernameOrEmail);
+        }
+        return user;
     }
 
     public Set<UserDTO> getAllUsersDTO() {
