@@ -1,5 +1,6 @@
 package com.servidorcentral.models;
 
+import com.servidorcentral.dtos.ReservationDTO;
 import com.servidorcentral.enums.ReservationType;
 import com.servidorcentral.enums.SeatClass;
 
@@ -34,6 +35,48 @@ public class Reservation {
         this.reservationType = builder.reservationType;
         this.seatClass = builder.seatClass;
         this.totalCost = builder.totalCost;
+    }
+
+    // Getters
+    public int getId() {
+        return this.id;
+    }
+
+    public LocalDate getRegistrationDate() {
+        return this.registrationDate;
+    }
+
+    public Flight getFlight() {
+        return this.flight;
+    }
+
+    public int getAmountTickets() {
+        return this.amountTickets;
+    }
+
+    public int getAmountExtraLuggage() {
+        return this.amountExtraLuggage;
+    }
+
+    public Set<Ticket> getTickets() {
+        return this.tickets;
+    }
+
+    public ReservationType getReservationType() {
+        return this.reservationType;
+    }
+
+    public SeatClass getSeatClass() {
+        return this.seatClass;
+    }
+
+    public BigDecimal getTotalCost() {
+        return this.totalCost;
+    }
+
+    // Other methods
+    public ReservationDTO getDTO() {
+        return new ReservationDTO(this);
     }
 
     // Builder
