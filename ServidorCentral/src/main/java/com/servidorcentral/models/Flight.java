@@ -35,6 +35,47 @@ public class Flight {
         this.reservationsById = builder.reservationsById;
     }
 
+    // Getters
+    public String getName() {
+        return this.name;
+    }
+
+    public int getMaxAmountTouristSeats() {
+        return this.maxAmountTouristSeats;
+    }
+
+    public int getMaxAmountBusinessSeats() {
+        return this.maxAmountBusinessSeats;
+    }
+
+    public int getAvailableTouristSeats() {
+        return this.availableTouristSeats;
+    }
+
+    public int getAvailableBusinessSeats() {
+        return this.availableBusinessSeats;
+    }
+
+    public Duration getDuration() {
+        return this.duration;
+    }
+
+    public LocalDate getDepartureDate() {
+        return this.departureDate;
+    }
+
+    public LocalDate getRegistrationDate() {
+        return this.registrationDate;
+    }
+
+    public byte[] getImage() {
+        return this.image;
+    }
+
+    public Map<Integer, Reservation> getReservationsById() {
+        return this.reservationsById;
+    }
+
     // Builder
     public static class Builder {
         private String name;

@@ -1,5 +1,7 @@
 package com.servidorcentral.dtos;
 
+import com.servidorcentral.models.Flight;
+
 import java.time.Duration;
 import java.time.LocalDate;
 
@@ -29,6 +31,18 @@ public class FlightDTO {
         this.departureDate = builder.departureDate;
         this.registrationDate = builder.registrationDate;
         this.image = builder.image;
+    }
+
+    public FlightDTO(Flight flight) {
+        this.name = flight.getName();
+        this.maxAmountTouristSeats = flight.getMaxAmountTouristSeats();
+        this.maxAmountBusinessSeats = flight.getMaxAmountBusinessSeats();
+        this.availableTouristSeats = flight.getAvailableTouristSeats();
+        this.availableBusinessSeats = flight.getAvailableBusinessSeats();
+        this.duration = flight.getDuration();
+        this.departureDate = flight.getDepartureDate();
+        this.registrationDate = flight.getRegistrationDate();
+        this.image = flight.getImage();
     }
 
     // Builder
