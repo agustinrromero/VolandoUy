@@ -2,10 +2,13 @@ package com.servidorcentral.dtos;
 
 import com.servidorcentral.enums.ReservationType;
 import com.servidorcentral.enums.SeatClass;
+import com.servidorcentral.models.Reservation;
+import com.servidorcentral.models.Ticket;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class ReservationDTO {
 
@@ -34,6 +37,19 @@ public class ReservationDTO {
         this.totalCost = builder.totalCost;
     }
 
+    public ReservationDTO(Reservation reservation) {
+        this.id = reservation.getId();
+        this.registrationDate = reservation.getRegistrationDate();
+        this.flight = new FlightDTO(reservation.getFlight());
+        this.amountTickets = reservation.getAmountTickets();
+        this.amountExtraLuggage = reservation.getAmountExtraLuggage();
+        this.tickets = reservation.getTickets().stream().map(Ticket::getDTO).collect(Collectors.toSet());
+        this.reservationType = reservation.getReservationType();
+        this.seatClass = reservation.getSeatClass();
+        this.totalCost = reservation.getTotalCost();
+    }
+
+    // Builder
     public static class Builder {
         private final int id;
         private LocalDate registrationDate;
