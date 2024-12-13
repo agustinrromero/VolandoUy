@@ -1,5 +1,6 @@
 package com.servidorcentral.models;
 
+import com.servidorcentral.dtos.FlightRouteDTO;
 import com.servidorcentral.enums.FlightRouteStatus;
 
 import java.time.LocalDate;
@@ -47,6 +48,76 @@ public class FlightRoute {
         this.image = builder.image;
         this.videoUrl = builder.videoUrl;
         this.visits = builder.visits;
+    }
+
+    // Getters
+    public String getName() {
+        return this.name;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public String getShortDescription() {
+        return this.shortDescription;
+    }
+
+    public Costs getCosts() {
+        return this.costs;
+    }
+
+    public LocalDate getRegistrationDate() {
+        return this.registrationDate;
+    }
+
+    public LocalTime getDepartureTime() {
+        return this.departureTime;
+    }
+
+    public Set<Category> getCategories() {
+        return this.categories;
+    }
+
+    public City getOrigin() {
+        return this.origin;
+    }
+
+    public City getDestination() {
+        return this.destination;
+    }
+
+    public Set<Flight> getFlights() {
+        return this.flights;
+    }
+
+    public Airline getAirline() {
+        return this.airline;
+    }
+
+    public FlightRouteStatus getStatus() {
+        return this.status;
+    }
+
+    public LocalDate getCompletionDate() {
+        return this.completionDate;
+    }
+
+    public byte[] getImage() {
+        return this.image;
+    }
+
+    public String getVideoUrl() {
+        return this.videoUrl;
+    }
+
+    public int getVisits() {
+        return this.visits;
+    }
+
+    // Other methods
+    public FlightRouteDTO getDTO() {
+        return new FlightRouteDTO(this);
     }
 
     // Builder

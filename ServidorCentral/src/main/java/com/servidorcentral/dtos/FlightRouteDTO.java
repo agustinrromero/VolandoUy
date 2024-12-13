@@ -1,10 +1,14 @@
 package com.servidorcentral.dtos;
 
 import com.servidorcentral.enums.FlightRouteStatus;
+import com.servidorcentral.models.Category;
+import com.servidorcentral.models.Flight;
+import com.servidorcentral.models.FlightRoute;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class FlightRouteDTO {
 
@@ -47,6 +51,25 @@ public class FlightRouteDTO {
         this.image = builder.image;
         this.videoUrl = builder.videoUrl;
         this.visits = builder.visits;
+    }
+
+    public FlightRouteDTO(FlightRoute flightRoute) {
+        this.name = flightRoute.getName();
+        this.description = flightRoute.getDescription();
+        this.shortDescription = flightRoute.getShortDescription();
+        this.costs = flightRoute.getCosts().getDTO();
+        this.registrationDate = flightRoute.getRegistrationDate();
+        this.departureTime = flightRoute.getDepartureTime();
+        this.categories = flightRoute.getCategories().stream().map(Category::getDTO).collect(Collectors.toSet());
+        this.origin = flightRoute.getOrigin().getDTO();
+        this.destination = flightRoute.getDestination().getDTO();
+        this.flights = flightRoute.getFlights().stream().map(Flight::getDTO).collect(Collectors.toSet());
+        this.airline = flightRoute.getAirline().getDTO();
+        this.status = flightRoute.getStatus();
+        this.completionDate = flightRoute.getCompletionDate();
+        this.image = flightRoute.getImage();
+        this.videoUrl = flightRoute.getVideoUrl();
+        this.visits = flightRoute.getVisits();
     }
 
     // Builder
