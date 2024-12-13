@@ -36,12 +36,12 @@ public class UserRepository {
         emailUser.put(user.getEmail(), user);
     }
 
-    public User getUserByUsername(String username) {
-        return usernameUser.get(username);
+    public Optional<User> getUserByUsername(String username) {
+        return Optional.ofNullable(usernameUser.get(username));
     }
 
-    public User getUserByEmail(String email) {
-        return emailUser.get(email);
+    public Optional<User> getUserByEmail(String email) {
+        return Optional.ofNullable(emailUser.get(email));
     }
 
     public Set<UserDTO> getAllUsersDTO() {
