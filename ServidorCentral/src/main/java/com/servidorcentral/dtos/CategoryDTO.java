@@ -1,4 +1,11 @@
 package com.servidorcentral.dtos;
 
-public record CategoryDTO(String name) {}
+import com.servidorcentral.models.Category;
+
+public record CategoryDTO(String name) {
+
+    public CategoryDTO(Category category) {
+        this(category.getName());
+    }
+}
 
