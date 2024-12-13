@@ -1,5 +1,7 @@
 package com.servidorcentral.models;
 
+import com.servidorcentral.dtos.FlightDTO;
+
 import java.time.Duration;
 import java.time.LocalDate;
 import java.util.Map;
@@ -74,6 +76,11 @@ public class Flight {
 
     public Map<Integer, Reservation> getReservationsById() {
         return this.reservationsById;
+    }
+
+    // Other methods
+    public FlightDTO getDTO() {
+        return new FlightDTO(this);
     }
 
     // Builder
