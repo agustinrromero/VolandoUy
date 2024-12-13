@@ -45,6 +45,14 @@ public class UserRepository {
         return Optional.ofNullable(emailUser.get(email));
     }
 
+    public Optional<User> getUser(String usernameOrEmail) {
+        Optional<User> user = getUserByUsername(usernameOrEmail);
+        if (user.isEmpty()) {
+            user = getUserByEmail(usernameOrEmail);
+        }
+        return user;
+    }
+
     public Set<UserDTO> getAllUsersDTO() {
         Set<UserDTO> usersDTO = new HashSet<>();
 

@@ -1,5 +1,6 @@
 package com.servidorcentral.controllers;
 
+import com.servidorcentral.dtos.ReservationDTO;
 import com.servidorcentral.dtos.UserDTO;
 import com.servidorcentral.exceptions.UserAlreadyExistsException;
 import com.servidorcentral.models.Airline;
@@ -15,5 +16,9 @@ public interface UserController {
 
     Set<UserDTO> getAllUsersDTO();
 
+    /**
+     * @param usernameOrEmail Username or email of the user
+     */
+    Set<ReservationDTO> getUserReservationsDTO(String usernameOrEmail);
 }
 
