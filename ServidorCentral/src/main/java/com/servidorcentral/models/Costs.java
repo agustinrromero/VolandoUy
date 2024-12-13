@@ -1,5 +1,7 @@
 package com.servidorcentral.models;
 
+import com.servidorcentral.dtos.CostsDTO;
+
 import java.math.BigDecimal;
 
 public class Costs {
@@ -14,6 +16,7 @@ public class Costs {
         this.costPerUnitExtraLuggage = costPerUnitExtraLuggage;
     }
 
+    // Getters
     public BigDecimal getBaseCostTouristClass() {
         return baseCostTouristClass;
     }
@@ -24,6 +27,11 @@ public class Costs {
 
     public BigDecimal getCostPerUnitExtraLuggage() {
         return costPerUnitExtraLuggage;
+    }
+
+    // Other methods
+    public CostsDTO getDTO() {
+        return new CostsDTO(this);
     }
 
 }
