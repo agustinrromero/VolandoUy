@@ -1,6 +1,7 @@
 package com.servidorcentral.dtos;
 
 import com.servidorcentral.enums.Country;
+import com.servidorcentral.models.City;
 
 import java.time.LocalDate;
 
@@ -20,6 +21,15 @@ public class CityDTO {
         this.webUrl = builder.webUrl;
         this.country = builder.country;
         this.registrationDate = builder.registrationDate;
+    }
+
+    public CityDTO(City city) {
+        this.name = city.getName();
+        this.description = city.getDescription();
+        this.airport = city.getAirport();
+        this.webUrl = city.getWebUrl();
+        this.country = city.getCountry();
+        this.registrationDate = city.getRegistrationDate();
     }
 
     public String getName() {

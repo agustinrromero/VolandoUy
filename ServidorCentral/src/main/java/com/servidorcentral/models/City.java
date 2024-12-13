@@ -1,5 +1,6 @@
 package com.servidorcentral.models;
 
+import com.servidorcentral.dtos.CityDTO;
 import com.servidorcentral.enums.Country;
 
 import java.time.LocalDate;
@@ -20,6 +21,36 @@ public class City {
         this.webUrl = builder.webUrl;
         this.country = builder.country;
         this.registrationDate = builder.registrationDate;
+    }
+
+    // Getters
+    public String getName() {
+        return this.name;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public String getAirport() {
+        return this.airport;
+    }
+
+    public String getWebUrl() {
+        return this.webUrl;
+    }
+
+    public Country getCountry() {
+        return this.country;
+    }
+
+    public LocalDate getRegistrationDate() {
+        return this.registrationDate;
+    }
+
+    // Other methods
+    public CityDTO getDTO() {
+        return new CityDTO(this);
     }
 
     // Builder
