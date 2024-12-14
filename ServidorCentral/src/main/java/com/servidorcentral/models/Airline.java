@@ -1,8 +1,9 @@
 package com.servidorcentral.models;
 
-import java.time.LocalDate;
 import com.servidorcentral.dtos.AirlineDTO;
 
+import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 public class Airline extends User {
@@ -15,7 +16,8 @@ public class Airline extends User {
         super(builder);
         this.description = builder.description;
         this.webUrl = builder.webUrl;
-        this.flightRoutes = builder.flightRoutes;
+        this.flightRoutes = Objects.requireNonNullElseGet(builder.flightRoutes, HashSet::new);
+    }
 
     // Getters
     public String getDescription() {

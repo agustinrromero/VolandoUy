@@ -6,6 +6,8 @@ import com.servidorcentral.enums.Country;
 import com.servidorcentral.enums.IdType;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -26,7 +28,8 @@ public class Client extends User {
         this.idType = builder.idType;
         this.idNumber = builder.idNumber;
         this.country = builder.country;
-        this.reservations = builder.reservations;
+        this.reservations = Objects.requireNonNullElseGet(builder.reservations, HashSet::new);
+    }
 
     // Getters
     public String getLastName() {
