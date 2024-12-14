@@ -26,6 +26,7 @@ public class App {
 
     private JFrame mainFrame;
     private final CreateUser createUserInternalFrame;
+    private final ViewUser viewUserInternalFrame;
 
     public App() {
         Factory factory = Factory.getInstance();
@@ -43,6 +44,14 @@ public class App {
         createUserInternalFrame.setVisible(false);
         createUserInternalFrame.updateDisplay();
         mainFrame.getContentPane().add(createUserInternalFrame);
+
+        /*
+          View user internal frame
+         */
+        viewUserInternalFrame = new ViewUser(userController, this);
+        viewUserInternalFrame.setLocation(10, 10);
+        viewUserInternalFrame.setVisible(false);
+        mainFrame.getContentPane().add(viewUserInternalFrame);
 
     }
 
@@ -70,6 +79,17 @@ public class App {
             createUserInternalFrame.setVisible(true);
         });
         userMenu.add(createUserMenuItem);
+
+        /*
+          View user
+         */
+        JMenuItem viewUserMenuItem = new JMenuItem("Consultar usuario");
+        viewUserMenuItem.addActionListener(e -> {
+            viewUserInternalFrame.clearDisplay();
+            viewUserInternalFrame.initialize();
+            viewUserInternalFrame.setVisible(true);
+        });
+        userMenu.add(viewUserMenuItem);
 
     }
 
