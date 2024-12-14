@@ -1,5 +1,6 @@
 package com.servidorcentral.models;
 
+import com.servidorcentral.dtos.ClientDTO;
 import com.servidorcentral.dtos.ReservationDTO;
 import com.servidorcentral.enums.Country;
 import com.servidorcentral.enums.IdType;
@@ -26,6 +27,36 @@ public class Client extends User {
         this.idNumber = builder.idNumber;
         this.country = builder.country;
         this.reservations = builder.reservations;
+
+    // Getters
+    public String getLastName() {
+        return this.lastName;
+    }
+
+    public LocalDate getBirthday() {
+        return this.birthday;
+    }
+
+    public IdType getIdType() {
+        return this.idType;
+    }
+
+    public String getIdNumber() {
+        return this.idNumber;
+    }
+
+    public Country getCountry() {
+        return this.country;
+    }
+
+    public Set<Reservation> getReservations() {
+        return this.reservations;
+    }
+
+    // Other methods
+    @Override
+    public ClientDTO getDTO() {
+       return new ClientDTO(this);
     }
 
     public Set<ReservationDTO> getReservationsDTO() {

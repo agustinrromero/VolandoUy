@@ -2,6 +2,7 @@ package com.servidorcentral.dtos;
 
 import com.servidorcentral.enums.Country;
 import com.servidorcentral.enums.IdType;
+import com.servidorcentral.models.Client;
 
 import java.time.LocalDate;
 
@@ -20,6 +21,15 @@ public class ClientDTO extends UserDTO {
         this.idType = builder.idType;
         this.idNumber = builder.idNumber;
         this.country = builder.country;
+    }
+
+    public ClientDTO(Client client) {
+        super(client);
+        this.lastName = client.getLastName();
+        this.birthday = client.getBirthday();
+        this.idType = client.getIdType();
+        this.idNumber = client.getIdNumber();
+        this.country = client.getCountry();
     }
 
 	public String getLastName() {

@@ -1,6 +1,8 @@
 package com.servidorcentral.models;
 
 import java.time.LocalDate;
+import com.servidorcentral.dtos.AirlineDTO;
+
 import java.util.Set;
 
 public class Airline extends User {
@@ -14,6 +16,24 @@ public class Airline extends User {
         this.description = builder.description;
         this.webUrl = builder.webUrl;
         this.flightRoutes = builder.flightRoutes;
+
+    // Getters
+    public String getDescription() {
+        return this.description;
+    }
+
+    public String getWebUrl() {
+        return this.webUrl;
+    }
+
+    public Set<FlightRoute> getFlightRoutes() {
+        return this.flightRoutes;
+    }
+
+    // Other methods
+    @Override
+    public AirlineDTO getDTO() {
+        return new AirlineDTO(this);
     }
 
     // Builder

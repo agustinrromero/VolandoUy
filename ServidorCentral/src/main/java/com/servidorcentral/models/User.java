@@ -4,7 +4,7 @@ import com.servidorcentral.dtos.UserDTO;
 
 import java.time.LocalDate;
 
-public class User {
+public abstract class User {
 
     private final String username;
     private final String email;
@@ -50,9 +50,7 @@ public class User {
     }
 
     // Other methods
-    public UserDTO getDTO() {
-        return new UserDTO(this);
-    }
+    public abstract UserDTO getDTO();
 
     // Builder
     public static abstract class UserBuilder<T extends UserBuilder<T>> {
@@ -90,9 +88,7 @@ public class User {
 
         protected abstract T self();
 
-        public User build() {
-            return new User(this);
-        }
+        public abstract User build();
     }
 
 }

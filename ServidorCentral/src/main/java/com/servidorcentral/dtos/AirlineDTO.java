@@ -1,6 +1,10 @@
 package com.servidorcentral.dtos;
 
+import com.servidorcentral.models.Airline;
+import com.servidorcentral.models.FlightRoute;
+
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class AirlineDTO extends UserDTO {
 
@@ -13,6 +17,13 @@ public class AirlineDTO extends UserDTO {
         this.description = builder.description;
         this.webUrl = builder.webUrl;
         this.flightRoutes = builder.flightRoutes;
+    }
+
+    public AirlineDTO(Airline airline) {
+        super(airline);
+        this.description = airline.getDescription();
+        this.webUrl = airline.getWebUrl();
+        this.flightRoutes = airline.getFlightRoutes().stream().map(FlightRoute::getDTO).collect(Collectors.toSet());
     }
 
 	public String getDescription() {
