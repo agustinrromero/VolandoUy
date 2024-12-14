@@ -6,27 +6,27 @@ public enum IdType {
     DNI("DNI"),
     PASSPORT("Pasaporte");
 
-    private final String idType;
+    private final String name;
 
-    IdType(String idType) {
-        this.idType = idType;
+    IdType(String name) {
+        this.name = name;
     }
 
-    public String getIdType() {
-        return idType;
+    public String getName() {
+        return name;
     }
 
     public static String[] getValues() {
         String[] values = new String[IdType.values().length];
         for (int i = 0; i < IdType.values().length; i++) {
-            values[i] = IdType.values()[i].idType;
+            values[i] = IdType.values()[i].name;
         }
         return values;
     }
 
     public static IdType fromString(String text) {
         for (IdType b : IdType.values()) {
-            if (b.idType.equalsIgnoreCase(text)) {
+            if (b.name.equalsIgnoreCase(text)) {
                 return b;
             }
         }
