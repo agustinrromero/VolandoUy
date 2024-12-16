@@ -98,7 +98,7 @@ public class CreateUser extends JInternalFrame {
     	gbc_lblUserType.gridy = 1;
     	getContentPane().add(lblUserType, gbc_lblUserType);
 
-    	cmbUserType = new JComboBox<String>(new String[] {"Cliente", "Aerolínea"});
+    	cmbUserType = new JComboBox<String>(new String[] {"Aerolínea", "Cliente"});
     	cmbUserType.addActionListener(arg0 -> updateDisplay());
     	GridBagConstraints gbc_cmbUserType = new GridBagConstraints();
     	gbc_cmbUserType.gridwidth = 8;
@@ -565,7 +565,7 @@ public class CreateUser extends JInternalFrame {
 
         // Check if registration date is valid
         try {
-			LocalDate.of(Integer.parseInt(this.txtRegistrationYear.getText()), Integer.parseInt(this.txtRegistrationMonth.getText()), Integer.parseInt(this.txtRegistrationDay.getText()));
+			LocalDate registrationDate = LocalDate.of(Integer.parseInt(this.txtRegistrationYear.getText()), Integer.parseInt(this.txtRegistrationMonth.getText()), Integer.parseInt(this.txtRegistrationDay.getText()));
         } catch (DateTimeException | NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Ingrese una fecha de alta válida", "Crear usuario", JOptionPane.ERROR_MESSAGE);
             return false;
@@ -573,7 +573,7 @@ public class CreateUser extends JInternalFrame {
 
         // Check client date fields
         if (Objects.equals(this.cmbUserType.getSelectedItem(), "Cliente")) {
-            LocalDate birthdayDate = LocalDate.now();
+            LocalDate birthdayDate;
             try {
                  birthdayDate = LocalDate.of(Integer.parseInt(this.txtBirthdayYear.getText()), Integer.parseInt(this.txtBirthdayMonth.getText()), Integer.parseInt(this.txtBirthdayDay.getText()));
             } catch (DateTimeException | NumberFormatException e) {

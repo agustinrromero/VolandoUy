@@ -1,7 +1,5 @@
 package com.servidorcentral.dtos;
 
-import com.servidorcentral.models.RoutePackage;
-
 import java.math.BigDecimal;
 import java.util.Set;
 
