@@ -560,6 +560,32 @@ public class CreateUser extends JInternalFrame {
 			return false;
 		}
 
+		// Check if password has letters, digits and symbols
+		// Also check it doesn't have whitespaces
+		char[] passwordArray = password.toCharArray();
+		boolean hasLetter = false, hasDigit = false, hasSymbol = false, hasWhitespace = false;
+		for (char character : passwordArray) {
+			if (Character.isLetter(character)) {
+				hasLetter = true;
+			} else if (Character.isDigit(character)) {
+				hasDigit = true;
+			} else if (Character.isWhitespace(character)) {
+				hasWhitespace = true;
+			} else {
+				hasSymbol = true;
+			}
+		}
+
+		if (hasWhitespace) {
+			JOptionPane.showMessageDialog(this, "La contraseña no puede contener espacios en blanco", "Crear usuario", JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+
+		if (!hasLetter || !hasDigit || !hasSymbol) {
+			JOptionPane.showMessageDialog(this, "La contraseña debe contener al menos una letra, un número y un símbolo", "Crear usuario", JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+
         // Check if passwords match
         if (!password.equals(confirmPassword)) {
             JOptionPane.showMessageDialog(this, "Las contraseñas no coinciden", "Crear usuario", JOptionPane.ERROR_MESSAGE);
