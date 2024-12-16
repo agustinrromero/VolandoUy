@@ -7,18 +7,6 @@ import com.servidorcentral.exceptions.UserAlreadyExistsException;
 import com.servidorcentral.models.Airline;
 import com.servidorcentral.models.Client;
 
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-
-import java.time.DateTimeException;
-import java.time.LocalDate;
-import java.util.Objects;
-
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
@@ -29,6 +17,15 @@ import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.time.DateTimeException;
+import java.time.LocalDate;
+import java.util.Objects;
 
 public class CreateUser extends JInternalFrame {
 
@@ -555,9 +552,41 @@ public class CreateUser extends JInternalFrame {
             return false;
         }
 
-        // Check if passwords match
+		// Check if password is at least 8 characters long
 		String password = new String(this.txtPassword.getPassword());
 		String confirmPassword = new String(this.txtConfirmPassword.getPassword());
+		if (password.length() < 8) {
+			JOptionPane.showMessageDialog(this, "La contraseña debe tener al menos 8 caracteres", "Crear usuario", JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+
+		// Check if password has letters, digits and symbols
+		// Also check it doesn't have whitespaces
+		char[] passwordArray = password.toCharArray();
+		boolean hasLetter = false, hasDigit = false, hasSymbol = false, hasWhitespace = false;
+		for (char character : passwordArray) {
+			if (Character.isLetter(character)) {
+				hasLetter = true;
+			} else if (Character.isDigit(character)) {
+				hasDigit = true;
+			} else if (Character.isWhitespace(character)) {
+				hasWhitespace = true;
+			} else {
+				hasSymbol = true;
+			}
+		}
+
+		if (hasWhitespace) {
+			JOptionPane.showMessageDialog(this, "La contraseña no puede contener espacios en blanco", "Crear usuario", JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+
+		if (!hasLetter || !hasDigit || !hasSymbol) {
+			JOptionPane.showMessageDialog(this, "La contraseña debe contener al menos una letra, un número y un símbolo", "Crear usuario", JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+
+        // Check if passwords match
         if (!password.equals(confirmPassword)) {
             JOptionPane.showMessageDialog(this, "Las contraseñas no coinciden", "Crear usuario", JOptionPane.ERROR_MESSAGE);
             return false;
