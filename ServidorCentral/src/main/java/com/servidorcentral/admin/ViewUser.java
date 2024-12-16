@@ -31,7 +31,6 @@ import java.util.Set;
 public class ViewUser extends JInternalFrame {
 
     private final UserController userController;
-//    private final FlightController flightController;
     private final JTextField txtName;
     private final JTextField txtEmail;
     private final JLabel lblLastName;
@@ -393,9 +392,10 @@ public class ViewUser extends JInternalFrame {
 
         lstUsers.addListSelectionListener(e -> {
             if (!e.getValueIsAdjusting() && !clearingDisplay) {
-                JList<String> lstUsernames = (JList<String>) e.getSource();
-                String username = lstUsernames.getSelectedValue();
-                updateUserData(username);
+                String selectedValue = lstUsers.getSelectedValue();
+                if (selectedValue != null) {
+                    updateUserData(selectedValue);
+                }
             }
         });
 
@@ -521,7 +521,7 @@ public class ViewUser extends JInternalFrame {
         UserDTO searchedUser = usersDTO.stream()
                 .filter(each -> each.getUsername().equals(username))
                 .findFirst()
-                .get();
+                .orElseThrow(() -> new IllegalArgumentException("User not found: " + username));
 
         this.txtUsername.setText(searchedUser.getUsername());
         this.txtName.setText(searchedUser.getName());
