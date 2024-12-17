@@ -4,14 +4,15 @@ import com.servidorcentral.dtos.CityDTO;
 import com.servidorcentral.enums.Country;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class City {
 
-    private String name;
+    private final String name;
     private String description;
     private String airport;
     private String webUrl;
-    private Country country;
+    private final Country country;
     private LocalDate registrationDate;
 
     private City(Builder builder) {
@@ -53,41 +54,53 @@ public class City {
         return new CityDTO(this);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        City city = (City) o;
+        return Objects.equals(name, city.name) && country == city.country;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, country);
+    }
+
     // Builder
     public static class Builder {
-        private String name;
+        private final String name;
         private String description;
         private String airport;
         private String webUrl;
-        private Country country;
+        private final Country country;
         private LocalDate registrationDate;
 
-        public Builder setName(String name) {
+        public Builder(String name, Country country) {
             this.name = name;
-            return this;
+            this.country = country;
         }
 
-        public Builder description(String description) {
+        public Builder setDescription(String description) {
             this.description = description;
             return this;
         }
 
-        public Builder airport(String airport) {
+        public Builder setAirport(String airport) {
             this.airport = airport;
             return this;
         }
 
-        public Builder webUrl(String webUrl) {
+        public Builder setWebUrl(String webUrl) {
             this.webUrl = webUrl;
             return this;
         }
 
-        public Builder country(Country country) {
-            this.country = country;
-            return this;
-        }
-
-        public Builder registrationDate(LocalDate registrationDate) {
+        public Builder setRegistrationDate(LocalDate registrationDate) {
             this.registrationDate = registrationDate;
             return this;
         }
