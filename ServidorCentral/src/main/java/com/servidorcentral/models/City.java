@@ -7,11 +7,11 @@ import java.time.LocalDate;
 
 public class City {
 
-    private String name;
+    private final String name;
     private String description;
     private String airport;
     private String webUrl;
-    private Country country;
+    private final Country country;
     private LocalDate registrationDate;
 
     private City(Builder builder) {
@@ -55,39 +55,34 @@ public class City {
 
     // Builder
     public static class Builder {
-        private String name;
+        private final String name;
         private String description;
         private String airport;
         private String webUrl;
-        private Country country;
+        private final Country country;
         private LocalDate registrationDate;
 
-        public Builder setName(String name) {
+        public Builder(String name, Country country) {
             this.name = name;
-            return this;
+            this.country = country;
         }
 
-        public Builder description(String description) {
+        public Builder setDescription(String description) {
             this.description = description;
             return this;
         }
 
-        public Builder airport(String airport) {
+        public Builder setAirport(String airport) {
             this.airport = airport;
             return this;
         }
 
-        public Builder webUrl(String webUrl) {
+        public Builder setWebUrl(String webUrl) {
             this.webUrl = webUrl;
             return this;
         }
 
-        public Builder country(Country country) {
-            this.country = country;
-            return this;
-        }
-
-        public Builder registrationDate(LocalDate registrationDate) {
+        public Builder setRegistrationDate(LocalDate registrationDate) {
             this.registrationDate = registrationDate;
             return this;
         }
