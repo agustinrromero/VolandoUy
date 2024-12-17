@@ -1,8 +1,11 @@
 package com.servidorcentral.controllers;
 
+import com.servidorcentral.exceptions.CityAlreadyExistsException;
+import com.servidorcentral.models.City;
+
 public interface FlightController {
 
-    // void createFlight(String flightNumber, String departure, String arrival, String date, String time, String duration, String price, String seats);
+    void createCity(City city) throws CityAlreadyExistsException;
 
 }
 
