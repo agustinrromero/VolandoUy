@@ -13,7 +13,7 @@ public class City {
     private String airport;
     private String webUrl;
     private final Country country;
-    private LocalDate registrationDate;
+    private final LocalDate registrationDate;
 
     private City(Builder builder) {
         this.name = builder.name;
@@ -21,7 +21,7 @@ public class City {
         this.airport = builder.airport;
         this.webUrl = builder.webUrl;
         this.country = builder.country;
-        this.registrationDate = builder.registrationDate;
+        this.registrationDate = LocalDate.now();
     }
 
     // Getters
@@ -78,7 +78,6 @@ public class City {
         private String airport;
         private String webUrl;
         private final Country country;
-        private LocalDate registrationDate;
 
         public Builder(String name, Country country) {
             this.name = name;
@@ -97,11 +96,6 @@ public class City {
 
         public Builder setWebUrl(String webUrl) {
             this.webUrl = webUrl;
-            return this;
-        }
-
-        public Builder setRegistrationDate(LocalDate registrationDate) {
-            this.registrationDate = registrationDate;
             return this;
         }
 
