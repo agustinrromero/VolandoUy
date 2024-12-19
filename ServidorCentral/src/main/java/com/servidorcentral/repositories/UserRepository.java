@@ -1,7 +1,9 @@
 package com.servidorcentral.repositories;
 
+import com.servidorcentral.dtos.AirlineDTO;
 import com.servidorcentral.dtos.UserDTO;
 import com.servidorcentral.exceptions.UserAlreadyExistsException;
+import com.servidorcentral.models.Airline;
 import com.servidorcentral.models.User;
 
 import java.util.HashMap;
@@ -61,6 +63,18 @@ public class UserRepository {
         }
 
         return usersDTO;
+    }
+
+    public Set<AirlineDTO> getAllAirlinesDTO() {
+        Set<AirlineDTO> airlinesDTO = new HashSet<>();
+
+        for (User user : this.usernameUser.values()) {
+            if (user instanceof Airline airline) {
+                airlinesDTO.add(airline.getDTO());
+            }
+        }
+
+        return airlinesDTO;
     }
 
 }
