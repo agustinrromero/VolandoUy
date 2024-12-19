@@ -1,5 +1,6 @@
 package com.servidorcentral.controllers;
 
+import com.servidorcentral.dtos.AirlineDTO;
 import com.servidorcentral.dtos.ReservationDTO;
 import com.servidorcentral.dtos.UserDTO;
 import com.servidorcentral.exceptions.UserAlreadyExistsException;
@@ -42,6 +43,11 @@ public class UserControllerImpl implements UserController {
         }
 
         return Collections.emptySet();
+    }
+
+    @Override
+    public Set<AirlineDTO> getAllAirlinesDTO() {
+        return UserRepository.getInstance().getAllAirlinesDTO();
     }
 
 }
