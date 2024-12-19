@@ -11,5 +11,7 @@ public interface FlightController {
 
     Set<String> getAllCategories();
 
+    Set<String> getCountryNames();
+
 }
 

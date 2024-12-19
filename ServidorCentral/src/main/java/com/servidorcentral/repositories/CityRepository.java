@@ -1,5 +1,6 @@
 package com.servidorcentral.repositories;
 
+import com.servidorcentral.dtos.CityDTO;
 import com.servidorcentral.enums.Country;
 import com.servidorcentral.exceptions.CityAlreadyExistsException;
 import com.servidorcentral.models.City;
@@ -7,6 +8,7 @@ import com.servidorcentral.models.City;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class CityRepository {
 
@@ -36,6 +38,12 @@ public class CityRepository {
         return this.cities.stream()
                 .filter(each -> each.getName().equals(name) && each.getCountry() == country)
                 .findAny();
+    }
+
+    public Set<CityDTO> getAllCities() {
+        return this.cities.stream()
+                .map(City::getDTO)
+                .collect(Collectors.toSet());
     }
 
 }
