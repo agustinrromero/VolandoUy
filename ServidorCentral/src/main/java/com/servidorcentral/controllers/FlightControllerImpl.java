@@ -6,6 +6,7 @@ import com.servidorcentral.repositories.CategoryRepository;
 import com.servidorcentral.repositories.CityRepository;
 
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class FlightControllerImpl implements FlightController {
 
@@ -19,6 +20,14 @@ public class FlightControllerImpl implements FlightController {
     public Set<String> getAllCategories() {
         CategoryRepository categoryRepository = CategoryRepository.getInstance();
         return categoryRepository.getAllCategories();
+    }
+
+    @Override
+    public Set<String> getCountryNames() {
+        CityRepository cityRepository = CityRepository.getInstance();
+        return cityRepository.getAllCities().stream()
+                .map(each -> each.getCountry().getName())
+                .collect(Collectors.toSet());
     }
 
 }
