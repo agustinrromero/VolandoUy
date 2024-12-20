@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class Flight {
 
-    private String name;
+    private final String name;
 
     private int maxAmountTouristSeats;
     private int maxAmountBusinessSeats;
@@ -85,7 +85,7 @@ public class Flight {
 
     // Builder
     public static class Builder {
-        private String name;
+        private final String name;
 
         private int maxAmountTouristSeats;
         private int maxAmountBusinessSeats;
@@ -101,9 +101,8 @@ public class Flight {
 
         private Map<Integer, Reservation> reservationsById;
 
-        public Builder setName(String name) {
+        public Builder(String name) {
             this.name = name;
-            return this;
         }
 
         public Builder setMaxAmountTouristSeats(int maxAmountTouristSeats) {
