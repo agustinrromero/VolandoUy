@@ -29,6 +29,8 @@ public class App {
     private final CreateUser createUserInternalFrame;
     private final ViewUser viewUserInternalFrame;
 
+    private final CreateFlightRoute createFlightRouteInternalFrame;
+
     private final CreateCity createCityInternalFrame;
 
     public App() {
@@ -57,13 +59,20 @@ public class App {
         mainFrame.getContentPane().add(viewUserInternalFrame);
 
         /*
+          Create flight route internal frame
+         */
+        createFlightRouteInternalFrame = new CreateFlightRoute(userController, flightController);
+        createFlightRouteInternalFrame.setLocation(10, 10);
+        createFlightRouteInternalFrame.setVisible(false);
+        mainFrame.getContentPane().add(createFlightRouteInternalFrame);
+
+        /*
           Create city internal frame
          */
         createCityInternalFrame = new CreateCity(flightController);
         createCityInternalFrame.setLocation(10, 10);
         createCityInternalFrame.setVisible(false);
         mainFrame.getContentPane().add(createCityInternalFrame);
-
     }
 
     private void initialize() {
@@ -101,6 +110,23 @@ public class App {
             viewUserInternalFrame.setVisible(true);
         });
         userMenu.add(viewUserMenuItem);
+
+        /*
+          Flight menu
+         */
+        JMenu flightMenu = new JMenu("Vuelo");
+        menuBar.add(flightMenu);
+
+        /*
+          Create flight route
+         */
+        JMenuItem createFlightRouteMenuItem = new JMenuItem("Crear ruta de vuelo");
+        createFlightRouteMenuItem.addActionListener(e -> {
+            // createFlightRouteInternalFrame.clearDisplay();
+            createFlightRouteInternalFrame.initialize();
+            createFlightRouteInternalFrame.setVisible(true);
+        });
+        flightMenu.add(createFlightRouteMenuItem);
 
         /*
           Others menu
