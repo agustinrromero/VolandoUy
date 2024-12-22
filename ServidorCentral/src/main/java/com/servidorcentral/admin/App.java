@@ -30,6 +30,7 @@ public class App {
     private final ViewUser viewUserInternalFrame;
 
     private final CreateCity createCityInternalFrame;
+    private final CreateCategory createCategoryInternalFrame;
 
     public App() {
         Factory factory = Factory.getInstance();
@@ -63,6 +64,14 @@ public class App {
         createCityInternalFrame.setLocation(10, 10);
         createCityInternalFrame.setVisible(false);
         mainFrame.getContentPane().add(createCityInternalFrame);
+
+        /*
+          Create category internal frame
+         */
+        createCategoryInternalFrame = new CreateCategory(flightController);
+        createCategoryInternalFrame.setLocation(10, 10);
+        createCategoryInternalFrame.setVisible(false);
+        mainFrame.getContentPane().add(createCategoryInternalFrame);
 
     }
 
@@ -117,6 +126,15 @@ public class App {
             createCityInternalFrame.setVisible(true);
         });
         othersMenu.add(createCityMenuItem);
+
+        /*
+          Create category
+         */
+        JMenuItem createCategoryMenuItem = new JMenuItem("Crear categoría");
+        createCategoryMenuItem.addActionListener(e -> {
+            createCategoryInternalFrame.setVisible(true);
+        });
+        othersMenu.add(createCategoryMenuItem);
     }
 
 }
