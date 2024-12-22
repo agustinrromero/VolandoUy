@@ -1,5 +1,6 @@
 package com.servidorcentral.repositories;
 
+import com.servidorcentral.exceptions.CategoryAlreadyExistsException;
 import com.servidorcentral.models.Category;
 
 import java.util.HashSet;
@@ -20,6 +21,14 @@ public class CategoryRepository {
             instance = new CategoryRepository();
         }
         return instance;
+    }
+
+    public void addCategory(Category category) throws CategoryAlreadyExistsException {
+        if (this.categories.contains(category)) {
+            throw new CategoryAlreadyExistsException("Category already exists: " + category.getName());
+        }
+
+        this.categories.add(category);
     }
 
     public Set<String> getAllCategories() {

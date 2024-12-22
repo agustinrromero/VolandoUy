@@ -1,6 +1,8 @@
 package com.servidorcentral.controllers;
 
+import com.servidorcentral.exceptions.CategoryAlreadyExistsException;
 import com.servidorcentral.exceptions.CityAlreadyExistsException;
+import com.servidorcentral.models.Category;
 import com.servidorcentral.models.City;
 import com.servidorcentral.repositories.CategoryRepository;
 import com.servidorcentral.repositories.CityRepository;
@@ -28,6 +30,12 @@ public class FlightControllerImpl implements FlightController {
         return cityRepository.getAllCities().stream()
                 .map(each -> each.getCountry().getName())
                 .collect(Collectors.toSet());
+    }
+
+    @Override
+    public void createCategory(Category category) throws CategoryAlreadyExistsException {
+        CategoryRepository categoryRepository = CategoryRepository.getInstance();
+        categoryRepository.addCategory(category);
     }
 
 }
