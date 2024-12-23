@@ -1,5 +1,6 @@
 package com.servidorcentral.controllers;
 
+import com.servidorcentral.dtos.CityDTO;
 import com.servidorcentral.exceptions.CategoryAlreadyExistsException;
 import com.servidorcentral.exceptions.CityAlreadyExistsException;
 import com.servidorcentral.models.Category;
@@ -13,9 +14,15 @@ public interface FlightController {
 
     Set<String> getAllCategories();
 
+    /**
+     * Get all country names that have a city registered
+     * @return Set of country names
+     */
     Set<String> getCountryNames();
 
     void createCategory(Category category) throws CategoryAlreadyExistsException;
+
+    Set<CityDTO> getCitiesFromCountry(String countryName);
 
 }
 
