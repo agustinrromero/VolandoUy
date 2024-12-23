@@ -1,15 +1,19 @@
 package com.servidorcentral.admin;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
-
 import com.servidorcentral.controllers.Factory;
 import com.servidorcentral.controllers.FlightController;
 import com.servidorcentral.controllers.UserController;
+import com.servidorcentral.dtos.CityDTO;
+import com.servidorcentral.enums.Country;
+import com.servidorcentral.models.Airline;
+import com.servidorcentral.models.Category;
+import com.servidorcentral.models.City;
+
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import java.awt.EventQueue;
 
 public class App {
 
@@ -28,6 +32,8 @@ public class App {
 
     private final CreateUser createUserInternalFrame;
     private final ViewUser viewUserInternalFrame;
+
+    private final CreateFlightRoute createFlightRouteInternalFrame;
 
     private final CreateCity createCityInternalFrame;
     private final CreateCategory createCategoryInternalFrame;
@@ -58,6 +64,14 @@ public class App {
         mainFrame.getContentPane().add(viewUserInternalFrame);
 
         /*
+          Create flight route internal frame
+         */
+        createFlightRouteInternalFrame = new CreateFlightRoute(userController, flightController);
+        createFlightRouteInternalFrame.setLocation(10, 10);
+        createFlightRouteInternalFrame.setVisible(false);
+        mainFrame.getContentPane().add(createFlightRouteInternalFrame);
+
+        /*
           Create city internal frame
          */
         createCityInternalFrame = new CreateCity(flightController);
@@ -72,6 +86,37 @@ public class App {
         createCategoryInternalFrame.setLocation(10, 10);
         createCategoryInternalFrame.setVisible(false);
         mainFrame.getContentPane().add(createCategoryInternalFrame);
+
+        try {
+            flightController.createCategory(new Category("categoria1"));
+            flightController.createCategory(new Category("categoria2"));
+            flightController.createCategory(new Category("categoria3"));
+            flightController.createCity(new City.Builder("Afgania1", Country.AFGANISTAN)
+                    .build()
+            );
+            flightController.createCity(new City.Builder("Afgania2", Country.AFGANISTAN)
+                    .build()
+            );
+            flightController.createCity(new City.Builder("Afgania3", Country.AFGANISTAN)
+                    .build()
+            );
+            flightController.createCity(new City.Builder("Albania", Country.ALBANIA)
+                    .build()
+            );
+            userController.createAirline(new Airline.AirlineBuilder("username", "correo@correo")
+                    .setDescription("descripcion")
+                    .setWebUrl("web")
+                    .setName("nombre")
+                    .setPassword("contrase;a0")
+                    .build()
+            );
+
+            for (CityDTO city : flightController.getCitiesFromCountry("Afganistán")) {
+                System.out.println(city.getName());
+            }
+        } catch (Exception e) {
+            // do nothing
+        }
 
     }
 
@@ -110,6 +155,23 @@ public class App {
             viewUserInternalFrame.setVisible(true);
         });
         userMenu.add(viewUserMenuItem);
+
+        /*
+          Flight menu
+         */
+        JMenu flightMenu = new JMenu("Vuelo");
+        menuBar.add(flightMenu);
+
+        /*
+          Create flight route
+         */
+        JMenuItem createFlightRouteMenuItem = new JMenuItem("Crear ruta de vuelo");
+        createFlightRouteMenuItem.addActionListener(e -> {
+            // createFlightRouteInternalFrame.clearDisplay();
+            createFlightRouteInternalFrame.initialize();
+            createFlightRouteInternalFrame.setVisible(true);
+        });
+        flightMenu.add(createFlightRouteMenuItem);
 
         /*
           Others menu
