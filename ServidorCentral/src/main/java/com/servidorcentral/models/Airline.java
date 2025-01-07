@@ -5,6 +5,7 @@ import com.servidorcentral.dtos.AirlineDTO;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Airline extends User {
 
@@ -17,6 +18,15 @@ public class Airline extends User {
         this.description = builder.description;
         this.webUrl = builder.webUrl;
         this.flightRoutes = Objects.requireNonNullElseGet(builder.flightRoutes, HashSet::new);
+    }
+
+    public Airline(AirlineDTO airlineDTO) {
+        super(airlineDTO);
+        this.description = airlineDTO.getDescription();
+        this.webUrl = airlineDTO.getWebUrl();
+        this.flightRoutes = airlineDTO.getFlightRoutes().stream()
+                .map(FlightRoute::new)
+                .collect(Collectors.toSet());
     }
 
     // Getters

@@ -4,6 +4,7 @@ import com.servidorcentral.dtos.FlightDTO;
 
 import java.time.Duration;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.Map;
 
 public class Flight {
@@ -35,6 +36,19 @@ public class Flight {
         this.registrationDate = builder.registrationDate;
         this.image = builder.image;
         this.reservationsById = builder.reservationsById;
+    }
+
+    public Flight(FlightDTO flightDTO) {
+        this.name = flightDTO.getName();
+        this.maxAmountTouristSeats = flightDTO.getMaxAmountTouristSeats();
+        this.maxAmountBusinessSeats = flightDTO.getMaxAmountBusinessSeats();
+        this.availableTouristSeats = flightDTO.getAvailableTouristSeats();
+        this.availableBusinessSeats = flightDTO.getAvailableBusinessSeats();
+        this.duration = flightDTO.getDuration();
+        this.departureDate = flightDTO.getDepartureDate();
+        this.registrationDate = flightDTO.getRegistrationDate();
+        this.image = flightDTO.getImage();
+        this.reservationsById = new HashMap<>();
     }
 
     // Getters

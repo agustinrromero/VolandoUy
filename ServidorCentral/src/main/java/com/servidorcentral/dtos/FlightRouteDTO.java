@@ -1,12 +1,15 @@
 package com.servidorcentral.dtos;
 
+import com.servidorcentral.enums.Country;
 import com.servidorcentral.enums.FlightRouteStatus;
 import com.servidorcentral.models.Category;
 import com.servidorcentral.models.Flight;
 import com.servidorcentral.models.FlightRoute;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -23,7 +26,7 @@ public class FlightRouteDTO {
     private Set<CategoryDTO> categories;
     private CityDTO origin;
     private CityDTO destination;
-    Set<FlightDTO> flights;
+    private Set<FlightDTO> flights;
     private AirlineDTO airline;
 
     private FlightRouteStatus status;
@@ -72,6 +75,71 @@ public class FlightRouteDTO {
         this.visits = flightRoute.getVisits();
     }
 
+    // Getters
+    public String getName() {
+        return this.name;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public String getShortDescription() {
+        return this.shortDescription;
+    }
+
+    public CostsDTO getCosts() {
+        return this.costs;
+    }
+
+    public LocalDate getRegistrationDate() {
+        return this.registrationDate;
+    }
+
+    public LocalTime getDepartureTime() {
+        return this.departureTime;
+    }
+
+    public Set<CategoryDTO> getCategories() {
+        return this.categories;
+    }
+
+    public CityDTO getOrigin() {
+        return this.origin;
+    }
+
+    public CityDTO getDestination() {
+        return this.destination;
+    }
+
+    public Set<FlightDTO> getFlights() {
+        return this.flights;
+    }
+
+    public AirlineDTO getAirline() {
+        return this.airline;
+    }
+
+    public FlightRouteStatus getStatus() {
+        return this.status;
+    }
+
+    public LocalDate getCompletionDate() {
+        return this.completionDate;
+    }
+
+    public byte[] getImage() {
+        return this.image;
+    }
+
+    public String getVideoUrl() {
+        return this.videoUrl;
+    }
+
+    public int getVisits() {
+        return this.visits;
+    }
+
     // Builder
     public static class Builder {
         private final String name;
@@ -85,7 +153,7 @@ public class FlightRouteDTO {
         private Set<CategoryDTO> categories;
         private CityDTO origin;
         private CityDTO destination;
-        Set<FlightDTO> flights;
+        private Set<FlightDTO> flights;
         private AirlineDTO airline;
 
         private FlightRouteStatus status;
@@ -176,6 +244,49 @@ public class FlightRouteDTO {
         }
 
         public FlightRouteDTO build() {
+            if (this.description == null) {
+                this.description = "";
+            }
+            if (this.shortDescription == null) {
+                this.shortDescription = "";
+            }
+            if (this.costs == null) {
+                this.costs = new CostsDTO(BigDecimal.ZERO, BigDecimal.ZERO, BigDecimal.ZERO);
+            }
+            if (this.registrationDate == null) {
+                this.registrationDate = LocalDate.MIN;
+            }
+            if (this.departureTime == null) {
+                this.departureTime = LocalTime.MIN;
+            }
+            if (this.categories == null) {
+                this.categories = new HashSet<>();
+            }
+            if (this.origin == null) {
+                this.origin = new CityDTO.Builder("", Country.AFGANISTAN).build();
+            }
+            if (this.destination == null) {
+                this.destination = new CityDTO.Builder("", Country.AFGANISTAN).build();
+            }
+            if (this.flights == null) {
+                this.flights = new HashSet<>();
+            }
+            if (this.airline == null) {
+                this.airline = new AirlineDTO.AirlineDTOBuilder("", "").build();
+            }
+            if (this.status == null) {
+                this.status = FlightRouteStatus.SUBMITTED;
+            }
+            if (this.completionDate == null) {
+                this.completionDate = LocalDate.MIN;
+            }
+            if (this.image == null) {
+                this.image = new byte[0];
+            }
+            if (this.videoUrl == null) {
+                this.videoUrl = "";
+            }
+
             return new FlightRouteDTO(this);
         }
     }

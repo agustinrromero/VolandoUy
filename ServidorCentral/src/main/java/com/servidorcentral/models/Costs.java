@@ -16,6 +16,12 @@ public class Costs {
         this.costPerUnitExtraLuggage = costPerUnitExtraLuggage;
     }
 
+    public Costs(CostsDTO costsDTO) {
+        this.baseCostTouristClass = costsDTO.baseCostTouristClass();
+        this.baseCostBusinessClass = costsDTO.baseCostBusinessClass();
+        this.costPerUnitExtraLuggage = costsDTO.costPerUnitExtraLuggage();
+    }
+
     // Getters
     public BigDecimal getBaseCostTouristClass() {
         return baseCostTouristClass;

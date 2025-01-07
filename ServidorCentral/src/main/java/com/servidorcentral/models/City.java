@@ -24,6 +24,15 @@ public class City {
         this.registrationDate = LocalDate.now();
     }
 
+    public City(CityDTO cityDTO) {
+        this.name = cityDTO.getName();
+        this.description = cityDTO.getDescription();
+        this.airport = cityDTO.getAirport();
+        this.webUrl = cityDTO.getWebUrl();
+        this.country = cityDTO.getCountry();
+        this.registrationDate = cityDTO.getRegistrationDate();
+    }
+
     // Getters
     public String getName() {
         return this.name;

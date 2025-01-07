@@ -6,6 +6,7 @@ import com.servidorcentral.enums.FlightRouteStatus;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class FlightRoute {
 
@@ -48,6 +49,27 @@ public class FlightRoute {
         this.image = builder.image;
         this.videoUrl = builder.videoUrl;
         this.visits = builder.visits;
+    }
+
+    public FlightRoute(FlightRouteDTO flightRouteDTO) {
+        this.name = flightRouteDTO.getName();
+        this.description = flightRouteDTO.getDescription();
+        this.shortDescription = flightRouteDTO.getShortDescription();
+        this.costs = new Costs(flightRouteDTO.getCosts());
+        this.registrationDate = flightRouteDTO.getRegistrationDate();
+        this.departureTime = flightRouteDTO.getDepartureTime();
+        this.categories = flightRouteDTO.getCategories().stream()
+                .map(Category::new)
+                .collect(Collectors.toSet());
+        this.origin = new City(flightRouteDTO.getOrigin());
+        this.destination = new City(flightRouteDTO.getDestination());
+        this.flights = flightRouteDTO.getFlights().stream().map(Flight::new).collect(Collectors.toSet());
+        this.airline = new Airline(flightRouteDTO.getAirline());
+        this.status = flightRouteDTO.getStatus();
+        this.completionDate = flightRouteDTO.getCompletionDate();
+        this.image = flightRouteDTO.getImage();
+        this.videoUrl = flightRouteDTO.getVideoUrl();
+        this.visits = flightRouteDTO.getVisits();
     }
 
     // Getters

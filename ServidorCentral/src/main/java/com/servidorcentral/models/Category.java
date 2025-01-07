@@ -6,10 +6,14 @@ import java.util.Objects;
 
 public class Category {
 
-    private String name;
+    private final String name;
 
     public Category(String name) {
         this.name = name;
+    }
+
+    public Category(CategoryDTO categoryDTO) {
+        this.name = categoryDTO.name();
     }
 
     // Getters

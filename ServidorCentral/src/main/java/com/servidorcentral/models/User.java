@@ -24,6 +24,15 @@ public abstract class User {
         this.registrationDate = builder.registrationDate;
     }
 
+    protected User(UserDTO userDTO) {
+        this.username = userDTO.getUsername();
+        this.email = userDTO.getEmail();
+        this.name = userDTO.getName();
+        this.password = userDTO.getPassword();
+        this.image = userDTO.getImage();
+        this.registrationDate = userDTO.getRegistrationDate();
+    }
+
     // Getters
     public String getUsername() {
         return this.username;

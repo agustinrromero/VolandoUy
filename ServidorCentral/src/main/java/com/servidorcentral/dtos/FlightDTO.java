@@ -45,6 +45,43 @@ public class FlightDTO {
         this.image = flight.getImage();
     }
 
+    // Getters
+    public String getName() {
+        return this.name;
+    }
+
+    public int getMaxAmountTouristSeats() {
+        return this.maxAmountTouristSeats;
+    }
+
+    public int getMaxAmountBusinessSeats() {
+        return this.maxAmountBusinessSeats;
+    }
+
+    public int getAvailableTouristSeats() {
+        return this.availableTouristSeats;
+    }
+
+    public int getAvailableBusinessSeats() {
+        return this.availableBusinessSeats;
+    }
+
+    public Duration getDuration() {
+        return this.duration;
+    }
+
+    public LocalDate getDepartureDate() {
+        return this.departureDate;
+    }
+
+    public LocalDate getRegistrationDate() {
+        return this.registrationDate;
+    }
+
+    public byte[] getImage() {
+        return this.image;
+    }
+
     // Builder
     public static class Builder {
         private final String name;
